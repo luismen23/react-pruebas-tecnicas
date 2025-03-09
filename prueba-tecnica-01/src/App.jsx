@@ -76,7 +76,7 @@ function App() {
           }}
         />
       ) : (
-        <p>Cargando ...</p>
+        <span>Cargando ...</span>
       )}
     </div>
   )
