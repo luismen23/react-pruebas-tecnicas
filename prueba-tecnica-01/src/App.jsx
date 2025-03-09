@@ -2,6 +2,7 @@
 // APIs:
 
 import { useEffect, useState, useTransition } from 'react'
+import { getRandomFact, getRandomImage } from './services/facts'
 
 // Facts Random: https://catfact.ninja/fact
 
@@ -13,58 +14,32 @@ import { useEffect, useState, useTransition } from 'react'
 
 // Muestra una imagen de un gato con la primera palabra.
 
-const CAT_API_RANDOM_FACT = 'https://catfact.ninja/fact'
 // const CAT_API_IMAGE = `https://cataas.com/cat/says/${firstWord}?json=true`
+
+// custom hook
+function useCatImage({ fact }) {
+  const [image, setImage] = useState()
+
+  useEffect(() => {
+    // .then() para que se ejecute la función asincrona y se setee el valor de la imagen
+    getRandomImage(fact).then(newImage => setImage(newImage))
+  }, [fact])
+
+  return { image }
+}
 
 function App() {
   const [fact, setFact] = useState()
-  const [image, setImage] = useState()
-  const [reload, setReload] = useState(false)
+  const { image } = useCatImage({ fact })
 
   useEffect(() => {
-    // llamando a la api sin async await
-    // fetch(CAT_API_RANDOM_FACT)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     const { fact } = data
-    //     setFact(fact)
+    getRandomFact().then(newFact => setFact(newFact))
+  }, [])
 
-    //     const firstWord = fact.split(' ')[0]
-
-    //     fetch(`https://cataas.com/cat/says/${firstWord}?json=true`)
-    //       .then(res => res.json())
-    //       .then(data => {
-    //         const { url } = data
-    //         setImage(url)
-    //       })
-    //   })
-
-    // llamando a la api con async await
-    const fetchData = async () => {
-      try {
-        const data = await fetch(CAT_API_RANDOM_FACT)
-        const json = await data.json()
-        const { fact } = json
-        setFact(fact)
-        const firstWord = fact.split(' ')[0]
-
-        const dataImage = await fetch(
-          `https://cataas.com/cat/says/${firstWord}?json=true`
-        )
-        const jsonImage = await dataImage.json()
-        const { url } = jsonImage
-        setImage(url)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-
-    fetchData()
-  }, [reload])
-
-  const handleClick = e => {
+  const handleClick = async e => {
     e.preventDefault()
-    setReload(!reload)
+    const newFact = await getRandomFact(fact)
+    setFact(newFact)
   }
 
   return (
