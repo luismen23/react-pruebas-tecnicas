@@ -20,9 +20,49 @@ body {
 
 .cell {
   border: 2px solid #f2f6f6;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.turn {
+  border: 2px solid yellow;
+  padding: 7px 12px;
+  border-radius: 5px;
+}
+
+.resetButton {
+  background-color: transparent;
+  color: #fff;
+  padding: 10px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.resetButton:hover {
+  background-color: white;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.winnerPlayer {
+  color: green;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .cell {
+    width: 150px;
+    height: 150px;
+  }
 }
