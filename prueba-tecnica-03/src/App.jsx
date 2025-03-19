@@ -1,29 +1,61 @@
 // import Movies from './components/Movies'
 // import NavBar from './components/NavBar'
-import { useState } from 'react'
-import { Search } from './mocks/results.json'
+import { useEffect, useRef, useState } from 'react'
+import Movies from './components/Movies'
+// import useMovies from './hooks/useMovies'
 
 function App() {
-  const mappedMovies = Search.map(movie => ({
-    title: movie.Title,
-    year: movie.year,
-    id: movie.imdbID,
-    type: movie.Type,
-    poster: movie.Poster,
-  }))
-
   const [search, setSearch] = useState('')
+  const [error, setError] = useState(null)
+  // const [loading, setLoading] = useState(false)
+  const isFirstInput = useRef(true)
+  // const { getMovies } = useMovies()
 
   const handleChange = event => {
+    const newSearch = event.target.value
+    // Pre-validations
+    if (newSearch.startsWith(' ')) {
+      setError('No puedes comenzar con un espacio')
+      return
+    }
+
+    if (newSearch.startsWith(Number(newSearch))) {
+      setError('No puedes comenzar por un number')
+      return
+    }
     setSearch(event.target.value)
+    setError(null)
   }
+
+  useEffect(() => {
+    if (isFirstInput.current) {
+      // if the user doenst have used the input, dont show the errors
+      isFirstInput.current = search === ''
+      return
+    }
+
+    // Form Validations
+    if (search === '') {
+      setError('No puedes buscar una pelicula sin escribir nada')
+      return
+    }
+
+    if (search.length < 3) {
+      setError('La busqueda tiene que ser mayor a 3 caracteres')
+      return
+    }
+
+    setError(null)
+  }, [search])
 
   const handleSubmit = event => {
     event.preventDefault()
-    const { query } = Object.fromEntries(new window.FormData(event.target))
-    console.log(query)
+    // Obtaining form data value
+    const { search } = Object.fromEntries(new window.FormData(event.target))
 
-    if (search === '') return
+    console.log(search)
+
+    // getMovies()
   }
 
   return (
@@ -31,13 +63,17 @@ function App() {
       {/* NavBar */}
       <div className='navbar bg-base-300 shadow-sm'>
         <div className='flex-1'>
-          <a className='btn btn-ghost text-[1rem] sm:text-xl'>Toku TV</a>
+          <a className='btn btn-ghost text-[1rem] sm:text-xl' href='/'>
+            Toku TV
+          </a>
         </div>
+        {/* Form */}
         <form onSubmit={handleSubmit} className='flex gap-2'>
           <input
             type='text'
-            name='query'
+            name='search'
             value={search}
+            ref={isFirstInput}
             onChange={handleChange}
             placeholder='Search movie'
             className='input input-bordered w-32 md:w-[30rem]'
@@ -47,7 +83,12 @@ function App() {
           </button>
         </form>
       </div>
-      {/* <Movies /> */}
+
+      {/* Validation Error */}
+      {error && <p className='mx-auto text-red-700 p-3'>{error}</p>}
+
+      {/* Movies */}
+      {<Movies />}
     </div>
   )
 }
