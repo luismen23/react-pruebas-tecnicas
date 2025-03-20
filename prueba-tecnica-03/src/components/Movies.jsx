@@ -1,22 +1,6 @@
-import { useEffect, useState } from 'react'
-import useMovies from '../hooks/useMovies'
-import { searchMovies } from '../services/movies'
-
-export function Movies({ movieSearch }) {
-  const [movies, setMovies] = useState([])
-
-  useEffect(() => {
-    const getMovies = async () => {
-      const result = await searchMovies()
-      setMovies(result)
-    }
-
-    getMovies()
-    console.log('render')
-  }, [])
-
+function ListOfMovies({ movies }) {
   return (
-    <div className=' flex-col flex justify-center items-center gap-5 p-20 pt-10 md:flex-row md:flex-wrap '>
+    <div className=' flex-col flex justify-center items-center gap-5 p-20 pt-10 md:flex-row md:flex-wrap'>
       {movies?.map(movie => {
         return (
           <div
@@ -44,4 +28,13 @@ export function Movies({ movieSearch }) {
   )
 }
 
+function NoMoviesResults() {
+  return <p className='p-5'>No se encontraron películas para esta búsqueda</p>
+}
+
+function Movies({ movies }) {
+  const hasMovies = movies?.length > 0
+
+  return hasMovies ? <ListOfMovies movies={movies} /> : <NoMoviesResults />
+}
 export default Movies

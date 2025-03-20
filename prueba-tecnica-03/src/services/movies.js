@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
 
-const API_KEY = '23da9034'
-const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&s=avenger`
-
-export async function searchMovies() {
+export async function searchMovies({ search }) {
+  const API_KEY = '23da9034'
+  const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}`
   try {
     const response = await fetch(API_URL)
     const json = await response.json()

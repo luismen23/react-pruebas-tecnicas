@@ -1,27 +1,26 @@
-// import { useState } from 'react'
-// import { searchMovies } from '../services/movies'
+import { useCallback, useRef, useState } from 'react'
+import { searchMovies } from '../services/movies'
 
-function useMovies() {
-  // const [resultsMovies, setResultsMovies] = useState([])
+export function useMovies() {
+  const [resultsMovies, setResultsMovies] = useState([])
+  const [loading, setLoading] = useState(false)
+  const previousSearch = useRef('')
 
-  try {
-    // const getMovies = async () => {
-    //   const result = await searchMovies()
-    //   setResultsMovies(result)
-    //   console.log(result)
-    // }
-    // const movies = resultsMovies.Search
-    // const mappedMovies = movies?.map(movie => ({
-    //   title: movie.Title,
-    //   year: movie.Year,
-    //   id: movie.imdbID,
-    //   type: movie.Type,
-    //   poster: movie.Poster,
-    // }))
-    // return { resultsMovies, getMovies }
-  } catch (e) {
-    throw new Error(e)
-  }
+  const getMovies = useCallback(async search => {
+    // evitar misma busqueda dos o mas veces
+    if (search === previousSearch.current) return
+    // recuperar movies
+    try {
+      setLoading(true)
+      previousSearch.current = search
+      const newMovies = await searchMovies({ search })
+      setResultsMovies(newMovies)
+    } catch (e) {
+      throw new Error(e.message)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  return { resultsMovies, getMovies, loading }
 }
-
-export default useMovies
