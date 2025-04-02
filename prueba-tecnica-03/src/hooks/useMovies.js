@@ -1,7 +1,7 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { searchMovies } from '../services/movies'
 
-export function useMovies() {
+export function useMovies({ sort }) {
   const [resultsMovies, setResultsMovies] = useState([])
   const [loading, setLoading] = useState(false)
   const previousSearch = useRef('')
@@ -22,5 +22,13 @@ export function useMovies() {
     }
   }, [])
 
-  return { resultsMovies, getMovies, loading }
+  //evitamos que se calcule o ejecute la logica del sort cada vez que escribamos en el input,
+  //guardano o memoizando el resultado de sort y dependiendo del sort y los resultados.
+  const sortedMovies = useMemo(() => {
+    return sort
+      ? [...resultsMovies].sort((a, b) => a.title.localeCompare(b.title))
+      : resultsMovies
+  }, [sort, resultsMovies])
+
+  return { resultsMovies: sortedMovies, getMovies, loading }
 }

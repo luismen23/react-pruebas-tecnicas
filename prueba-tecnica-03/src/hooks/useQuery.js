@@ -1,9 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import debounce from 'just-debounce-it'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
-export function useQuery() {
+export function useQuery({ getMovies }) {
   const [query, setQuery] = useState('')
   const [error, setError] = useState(null)
   const isFirstInput = useRef(true)
+
+  const debouncedGetMovies = useCallback(
+    debounce(search => {
+      getMovies(search)
+    }, 500),
+    []
+  )
 
   const handleChange = event => {
     const newSearch = event.target.value
@@ -17,8 +25,9 @@ export function useQuery() {
       setError('No puedes comenzar por un number')
       return
     }
-    setQuery(event.target.value)
+    setQuery(newSearch)
     setError(null)
+    debouncedGetMovies(newSearch)
   }
 
   useEffect(() => {

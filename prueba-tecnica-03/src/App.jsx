@@ -1,11 +1,16 @@
 // import NavBar from './components/NavBar'
+import { useState } from 'react'
 import Movies from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 import { useQuery } from './hooks/useQuery'
 
 function App() {
-  const { getMovies, resultsMovies, loading } = useMovies()
-  const { query, error, isFirstInput, handleChange } = useQuery()
+  const [sort, setSort] = useState(false)
+  const { getMovies, resultsMovies, loading } = useMovies({ sort })
+  const { query, error, isFirstInput, handleChange } = useQuery({
+    getMovies,
+    sort,
+  })
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -13,6 +18,10 @@ function App() {
     const { search } = Object.fromEntries(new window.FormData(event.target))
 
     getMovies(search)
+  }
+
+  const handleSort = () => {
+    setSort(!sort)
   }
 
   return (
@@ -35,6 +44,17 @@ function App() {
             placeholder='Search movie'
             className='input input-bordered w-32 md:w-[30rem]'
           />
+          <div className='flex justify-center items-center text-center gap-1'>
+            <label htmlFor='sortMovies' className='text-xs'>
+              Sort Movies
+            </label>
+            <input
+              type='checkbox'
+              name='sortMovies'
+              checked={sort}
+              onChange={handleSort}
+            />
+          </div>
           <button className='btn btn-soft btn-primary w-[4.2rem] sm:w-24'>
             Search
           </button>
