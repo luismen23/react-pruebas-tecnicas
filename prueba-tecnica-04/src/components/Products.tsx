@@ -73,7 +73,7 @@ export function Products({ products }: { products: ProductsTypes[] }) {
               <img
                 src={product.image_url}
                 alt={`Image of ${product.title}`}
-                className='w-full h-48 object-cover' // Altura fija para consistencia visual
+                className='w-full h-[15rem] object-cover opacity-85' // Altura fija para consistencia visual
                 loading='lazy' // Carga diferida para imágenes
               />
             </a>
@@ -104,7 +104,7 @@ export function Products({ products }: { products: ProductsTypes[] }) {
               <div className='mt-auto pt-2'>
                 {/* Precio */}
                 <p className='text-xl font-bold text-cyan-400 mb-2'>
-                  {product.price}
+                  ${product.price}
                 </p>{' '}
                 {/* Color principal tipo 'tech' */}
                 {/* Rating y número de reviews */}
