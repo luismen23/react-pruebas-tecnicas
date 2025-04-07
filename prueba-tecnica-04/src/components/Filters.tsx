@@ -1,3 +1,4 @@
+import { useFilters } from '@/hooks/useFilters'
 import {
   Select,
   SelectContent,
@@ -6,20 +7,33 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
-import { SetStateAction, useId, useState } from 'react'
+import { useId } from 'react'
 
 function Filters() {
-  const [minPrice, setMinPrice] = useState<number[]>([0])
+  const { filters, setFilters } = useFilters()
   const sliderID = useId()
 
-  const handleChange = (newValue: number[]) => {
-    setMinPrice(newValue)
+  const handleChangeMinPrice = (value: number[]) => {
+    setFilters(prevState => ({
+      ...prevState,
+      minPrice: value[0],
+    }))
+  }
+
+  const handleChangeCategory = (value: string[]) => {
+    setFilters(prevState => ({
+      ...prevState,
+      category: value[0],
+    }))
   }
 
   return (
     <div className='text-white flex gap-5 flex-col'>
       <div>
-        <Select>
+        <Select
+          onValueChange={value => handleChangeCategory([value])}
+          defaultValue='all'
+        >
           <SelectTrigger className='w-[180px]'>
             <SelectValue
               placeholder='Categories'
@@ -27,6 +41,7 @@ function Filters() {
             />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value='all'>All Categories</SelectItem>
             <SelectItem value='Computers & Accessories'>
               Computers & Accessories
             </SelectItem>
@@ -44,11 +59,11 @@ function Filters() {
         <Slider
           min={0}
           max={1000}
-          value={minPrice}
+          value={[filters.minPrice]}
           id={sliderID}
-          onValueChange={handleChange}
+          onValueChange={value => handleChangeMinPrice(value)}
         />{' '}
-        <span>${minPrice[0]}</span>
+        <span>${filters.minPrice}</span>
       </div>
     </div>
   )

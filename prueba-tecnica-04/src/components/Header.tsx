@@ -1,5 +1,4 @@
 import Filters from './Filters'
-import { Input } from './ui/input'
 
 function Header() {
   return (
