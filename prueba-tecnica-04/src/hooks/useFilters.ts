@@ -1,20 +1,9 @@
 import { useContext } from 'react'
 import { FiltersContext } from '@/context/filters'
+import { ProductsTypes } from '@/interfaces/interfaces'
 
 export function useFilters() {
   const { filters, setFilters } = useContext(FiltersContext)
-
-  interface ProductsTypes {
-    asin: string
-    title: string
-    price: number
-    rating: number
-    reviews_count: number
-    image_url: string
-    product_url: string
-    brand: string
-    category: string
-  }
 
   // filtrar por categoria y precio
   const filterProducts = (products: ProductsTypes[]) => {

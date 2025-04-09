@@ -1,16 +1,15 @@
-import Filters from './Filters'
+import { CartSheet, Filters } from './'
 
-function Header() {
+export function Header() {
   return (
     <header className='flex justify-between items-center w-full text-center mb-10 '>
-      <div className=' '>
-        <Filters />
-      </div>
-      <h1 className='text-3xl sm:text-4xl font-bold text-center  text-teal-500'>
-        E-Shop
+      <h1 className='text-3xl sm:text-4xl font-bold text-center  text-white'>
+        Shop
       </h1>
+      <div className='flex items-center gap-7'>
+        <Filters />
+        <CartSheet />
+      </div>
     </header>
   )
 }
-
-export default Header

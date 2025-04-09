@@ -9,7 +9,7 @@ import {
 import { Slider } from '@/components/ui/slider'
 import { useId } from 'react'
 
-function Filters() {
+export function Filters() {
   const { filters, setFilters } = useFilters()
   const sliderID = useId()
 
@@ -68,5 +68,3 @@ function Filters() {
     </div>
   )
 }
-
-export default Filters

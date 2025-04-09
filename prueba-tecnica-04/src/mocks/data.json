@@ -1,7 +1,7 @@
 {
   "results": [
     {
-      "asin": "B09XYZ1234",
+      "id": "B09XYZ1234",
       "title": "Advanced Ultrabook Pro 14-inch Laptop",
       "price": 1299.99,
       "rating": 4.7,
@@ -12,7 +12,7 @@
       "category": "Computers & Accessories"
     },
     {
-      "asin": "B08ABC5678",
+      "id": "B08ABC5678",
       "title": "Curved Gaming Monitor 27'' QHD 165Hz",
       "price": 349.5,
       "rating": 4.8,
@@ -23,7 +23,7 @@
       "category": "Displays & Input"
     },
     {
-      "asin": "B07DEF9012",
+      "id": "B07DEF9012",
       "title": "Compact TKL RGB Mechanical Keyboard",
       "price": 89.95,
       "rating": 4.5,
@@ -34,7 +34,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B09GHI3456",
+      "id": "B09GHI3456",
       "title": "Silent Ergonomic Wireless Mouse",
       "price": 24.99,
       "rating": 4.3,
@@ -45,7 +45,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B08JKL7890",
+      "id": "B08JKL7890",
       "title": "NVMe Gen4 SSD 1TB - High Speed",
       "price": 99.0,
       "rating": 4.9,
@@ -56,7 +56,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B07MNO1234",
+      "id": "B07MNO1234",
       "title": "DDR4 RAM 16GB (2x8GB) 3200MHz CL16 Memory",
       "price": 65.75,
       "rating": 4.6,
@@ -67,7 +67,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B09PQR5678",
+      "id": "B09PQR5678",
       "title": "Full HD 1080p Webcam with Microphone and Privacy Cover",
       "price": 45.99,
       "rating": 4.4,
@@ -78,7 +78,7 @@
       "category": "Displays & Input"
     },
     {
-      "asin": "B08STU9012",
+      "id": "B08STU9012",
       "title": "RTX 4060 8GB GDDR6 Graphics Card",
       "price": 859.0,
       "rating": 4.7,
@@ -89,7 +89,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B07VWX3456",
+      "id": "B07VWX3456",
       "title": "Portable External Hard Drive USB 3.0 2TB",
       "price": 69.99,
       "rating": 4.6,
@@ -100,7 +100,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B09YZA7890",
+      "id": "B09YZA7890",
       "title": "Wireless Gaming Headphones with Noise Cancellation",
       "price": 119.5,
       "rating": 4.5,
@@ -111,7 +111,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B08BCD1234",
+      "id": "B08BCD1234",
       "title": "ATX B550 AM4 Ryzen Motherboard",
       "price": 159.99,
       "rating": 4.7,
@@ -122,7 +122,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B07EFG5678",
+      "id": "B07EFG5678",
       "title": "750W 80+ Gold Modular Power Supply",
       "price": 109.0,
       "rating": 4.8,
@@ -133,7 +133,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B09HIJ9012",
+      "id": "B09HIJ9012",
       "title": "CPU Liquid Cooler AIO 240mm RGB",
       "price": 125.95,
       "rating": 4.6,
@@ -144,7 +144,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B08KLM3456",
+      "id": "B08KLM3456",
       "title": "ATX Mid-Tower PC Case with Tempered Glass Panel",
       "price": 85.0,
       "rating": 4.7,
@@ -155,7 +155,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B07NOP7890",
+      "id": "B07NOP7890",
       "title": "WiFi 6 AX1800 Dual Band Router",
       "price": 79.99,
       "rating": 4.4,
@@ -166,7 +166,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B09QRS1234",
+      "id": "B09QRS1234",
       "title": "USB C Hub 7-in-1 with HDMI 4K, PD, Card Reader",
       "price": 34.95,
       "rating": 4.5,
@@ -177,7 +177,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B08TUV5678",
+      "id": "B08TUV5678",
       "title": "Powerful USB 2.0 Desktop Speakers",
       "price": 29.99,
       "rating": 4.2,
@@ -188,7 +188,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B07WXY9012",
+      "id": "B07WXY9012",
       "title": "USB Condenser Microphone for Streaming/Podcast",
       "price": 55.5,
       "rating": 4.6,
@@ -199,7 +199,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B09ZAB3456",
+      "id": "B09ZAB3456",
       "title": "FHD 15.6-inch Portable Monitor USB-C/HDMI",
       "price": 179.0,
       "rating": 4.3,
@@ -210,7 +210,7 @@
       "category": "Displays & Input"
     },
     {
-      "asin": "B08CDE7890",
+      "id": "B08CDE7890",
       "title": "Reclining Ergonomic Gaming Chair with Footrest",
       "price": 189.99,
       "rating": 4.4,
@@ -221,7 +221,7 @@
       "category": "Computers & Accessories"
     },
     {
-      "asin": "B091112222",
+      "id": "B091112222",
       "title": "Gaming Mouse Pad Large RGB",
       "price": 29.99,
       "rating": 4.7,
@@ -232,7 +232,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B082223333",
+      "id": "B082223333",
       "title": "24-inch FHD IPS Monitor 75Hz",
       "price": 149.0,
       "rating": 4.5,
@@ -243,7 +243,7 @@
       "category": "Displays & Input"
     },
     {
-      "asin": "B073334444",
+      "id": "B073334444",
       "title": "Wireless Ergonomic Keyboard and Mouse Combo",
       "price": 59.99,
       "rating": 4.3,
@@ -254,7 +254,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B094445555",
+      "id": "B094445555",
       "title": "Portable SSD 500GB USB 3.2 Gen 2",
       "price": 79.0,
       "rating": 4.8,
@@ -265,7 +265,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B085556666",
+      "id": "B085556666",
       "title": "Low-Profile Mechanical Gaming Keyboard RGB",
       "price": 129.99,
       "rating": 4.6,
@@ -276,7 +276,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B096667777",
+      "id": "B096667777",
       "title": "USB 3.0 to SATA Adapter Cable",
       "price": 12.99,
       "rating": 4.4,
@@ -287,7 +287,7 @@
       "category": "Components & Network"
     },
     {
-      "asin": "B077778888",
+      "id": "B077778888",
       "title": "Gaming Headset with Microphone for PC/PS5/Xbox",
       "price": 69.5,
       "rating": 4.2,
@@ -298,7 +298,7 @@
       "category": "Peripherals"
     },
     {
-      "asin": "B088889999",
+      "id": "B088889999",
       "title": "Mini PC Windows 11 Intel Celeron",
       "price": 800.0,
       "rating": 4.5,
@@ -309,7 +309,7 @@
       "category": "Computers & Accessories"
     },
     {
-      "asin": "B099990000",
+      "id": "B099990000",
       "title": "USB Powered Monitor Light Bar",
       "price": 39.99,
       "rating": 4.7,
@@ -320,7 +320,7 @@
       "category": "Displays & Input"
     },
     {
-      "asin": "B08AAAA111",
+      "id": "B08AAAA111",
       "title": "Ergonomic Vertical Wireless Mouse",
       "price": 27.99,
       "rating": 4.3,
