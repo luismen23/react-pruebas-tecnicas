@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { EVENTS } from '../consts'
+import { EVENTS } from './consts'
 import { useEffect } from 'react'
 import { match } from 'path-to-regexp'
 import { Children } from 'react'

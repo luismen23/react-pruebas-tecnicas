@@ -1,0 +1,1 @@
+import{jsx as _jsx,jsxs as _jsxs,Fragment as _Fragment}from"react/jsx-runtime";import{Link}from"../Link";export default function Home(){return _jsxs(_Fragment,{children:[_jsx("h1",{children:"Home"}),_jsx("p",{children:"Simple page to show how React Router works"}),_jsx(Link,{to:"/about",children:"About"})]})}

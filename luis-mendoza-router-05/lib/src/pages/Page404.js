@@ -1,0 +1,1 @@
+import{jsx as _jsx,jsxs as _jsxs}from"react/jsx-runtime";import{Link}from"../Link";export function Page404(){return _jsxs("div",{children:[_jsx("h1",{children:"404"}),_jsx(Link,{to:"./",children:"Go back home"})]})}
