@@ -22,18 +22,25 @@ const getPlaceholder = ({
 }
 
 export const TextArea = ({ type, loading, onChange, value }: Props) => {
-  const commonStyles = { height: '150px' }
+  const commonStyles = { height: '150px', resize: 'none' }
+
   const styles =
     type === SectionType.From
       ? commonStyles
       : { ...commonStyles, backgroundColor: '#f5f5f5', border: 0 }
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(event.target.value)
+  }
   return (
     <Form.Control
       as='textarea'
       placeholder={getPlaceholder({ type, loading })}
       autoFocus={type === SectionType.From}
+      disabled={type === SectionType.To}
       style={styles}
       value={value}
+      onChange={handleChange}
     />
   )
 }

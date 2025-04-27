@@ -20,7 +20,9 @@ function App() {
     result,
     setFromText,
     setResult,
+    loading,
   } = useStoreReducer()
+
   return (
     <Container fluid>
       <h2 style={{ width: '250px', margin: ' 0 auto', marginBottom: '10px' }}>
@@ -65,6 +67,7 @@ function App() {
               type={SectionType.To}
               value={result}
               onChange={setResult}
+              loading={loading}
             />
           </Stack>
         </Col>
