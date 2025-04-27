@@ -1,6 +1,6 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { Form } from 'react-bootstrap'
 import { SectionType } from '../types.d'
+import React from 'react' // Import React to use CSSProperties
 
 interface Props {
   type: SectionType
@@ -22,12 +22,16 @@ const getPlaceholder = ({
 }
 
 export const TextArea = ({ type, loading, onChange, value }: Props) => {
-  const commonStyles = { height: '150px', resize: 'none' }
+  const commonStyles: React.CSSProperties = { height: '150px', resize: 'none' }
 
-  const styles =
+  const styles: React.CSSProperties =
     type === SectionType.From
       ? commonStyles
-      : { ...commonStyles, backgroundColor: '#f5f5f5', border: 0 }
+      : {
+          ...commonStyles,
+          backgroundColor: 'var(--bs-secondary-bg)',
+          border: 0,
+        }
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(event.target.value)

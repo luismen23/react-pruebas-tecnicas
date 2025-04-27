@@ -8,6 +8,7 @@ const initialState: State = {
   fromText: '',
   result: '',
   loading: false,
+  error: null,
 }
 
 function reducer(state: State, action: Action) {
@@ -18,31 +19,47 @@ function reducer(state: State, action: Action) {
 
     return {
       ...state,
+
+      error: null,
       fromLanguage: state.toLanguage,
       toLanguage: state.fromLanguage,
+      result: '',
     }
   }
 
   if (type === 'SET_FROM_LANGUAGE') {
+    // Si el cambio de idioma debe disparar una nueva traducción (y hay texto)
+    const shouldTranslateOnFromLangChange = state.fromText !== ''
     return {
       ...state,
       fromLanguage: action.payload,
+      result: '',
+      error: null,
+      loading: shouldTranslateOnFromLangChange,
     }
   }
 
   if (type === 'SET_TO_LANGUAGE') {
+    // Si el cambio de idioma debe disparar una nueva traducción (y hay texto)
+    const shouldTranslateOnToLangChange = state.fromText !== ''
     return {
       ...state,
       toLanguage: action.payload,
+      result: '',
+      error: null,
+      loading: shouldTranslateOnToLangChange,
     }
   }
 
   if (type === 'SET_FROM_TEXT') {
+    // Si el texto está vacío, no cargues
+    const loading = action.payload !== ''
     return {
       ...state,
-      loading: true,
+      loading: loading,
       fromText: action.payload,
       result: '',
+      error: null,
     }
   }
 
@@ -51,6 +68,15 @@ function reducer(state: State, action: Action) {
       ...state,
       loading: false,
       result: action.payload,
+      error: null,
+    }
+  }
+
+  if (type === 'SET_ERROR') {
+    return {
+      ...state,
+      loading: false,
+      error: action.payload,
     }
   }
 
@@ -58,8 +84,10 @@ function reducer(state: State, action: Action) {
 }
 
 export function useStoreReducer() {
-  const [{ fromLanguage, fromText, toLanguage, result, loading }, dispatch] =
-    useReducer(reducer, initialState)
+  const [
+    { fromLanguage, fromText, toLanguage, result, loading, error },
+    dispatch,
+  ] = useReducer(reducer, initialState)
 
   const interchangeLanguages = () => dispatch({ type: 'INTERCHANGE_LANGUAGES' })
 
@@ -72,19 +100,23 @@ export function useStoreReducer() {
   const setFromText = (payload: string) =>
     dispatch({ type: 'SET_FROM_TEXT', payload })
 
-  const setResult = (payload: string) =>
-    dispatch({ type: 'SET_RESULT', payload })
+  // Función para manejar errores
+  const setError = (payload: string | null) =>
+    dispatch({ type: 'SET_ERROR', payload })
 
   return {
+    // State
     fromLanguage,
     fromText,
     toLanguage,
     result,
     loading,
+    error,
     interchangeLanguages,
     setFromLanguage,
     setToLanguage,
     setFromText,
-    setResult,
+    setError,
+    dispatch,
   }
 }
