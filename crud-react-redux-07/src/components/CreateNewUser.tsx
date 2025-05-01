@@ -16,12 +16,14 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useUserActions } from '@/hooks/useUserActions'
+import { useState } from 'react'
+import { Badge } from './ui/badge'
 
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+  name: z.string().min(2).max(10, {
+    message: 'Username must have between 2 and 10 characters.',
   }),
-  email: z.string().min(2, {
+  email: z.string().min(2).includes('@', {
     message: 'Write a valid email.',
   }),
   github: z.string().min(2, {
@@ -30,7 +32,8 @@ const formSchema = z.object({
 })
 
 export function CreateNewUser() {
-  const { handleAddUser } = useUserActions()
+  const { addUser } = useUserActions()
+  const [result, setResult] = useState<'ok' | 'ko' | null>(null)
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,12 +46,25 @@ export function CreateNewUser() {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(data: { name: string; email: string; github: string }) {
+  function onSubmit(data: {
+    name: string
+    email: string
+    github: string
+    initials: string
+  }) {
+    setResult(null)
     const name = data.name
     const email = data.email
     const github = data.github
+    const initials = data.initials
 
-    handleAddUser({ name, email, github })
+    if (!name || !email || !github) {
+      return setResult('ko')
+    }
+
+    addUser({ name, email, github, initials })
+    setResult('ok')
+    form.reset()
   }
 
   return (
@@ -103,8 +119,22 @@ export function CreateNewUser() {
           )}
         />
         <Button variant={'secondary'} type='submit'>
-          Submit
+          Create
         </Button>
+        <span>
+          {result === 'ok' && (
+            <Badge className='text-green-500 ml-5' variant={'outline'}>
+              Created Succesfully
+            </Badge>
+          )}
+        </span>
+        <span>
+          {result === 'ko' && (
+            <Badge className='ml-5' variant={'destructive'}>
+              Try Again
+            </Badge>
+          )}
+        </span>
       </form>
     </Form>
   )

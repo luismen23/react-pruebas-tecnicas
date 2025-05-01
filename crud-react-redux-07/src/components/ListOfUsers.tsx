@@ -18,7 +18,7 @@ import { useUserActions } from '@/hooks/useUserActions'
 
 export default function UsersTable() {
   const users = useAppSelector(state => state.users)
-  const { handleDeleteUser } = useUserActions()
+  const { deleteUser } = useUserActions()
 
   return (
     <div className='w-full p-6 text-slate-50'>
@@ -91,7 +91,7 @@ export default function UsersTable() {
                         variant='ghost'
                         size='icon'
                         className='h-8 w-8 text-slate-400 hover:text-red-400 hover:bg-slate-800'
-                        onClick={() => handleDeleteUser(user.id)}
+                        onClick={() => deleteUser(user.id)}
                       >
                         <Trash2 className='h-4 w-4' />
                         <span className='sr-only'>Delete</span>
